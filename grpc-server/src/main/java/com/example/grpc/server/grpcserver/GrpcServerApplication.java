@@ -8,6 +8,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 import java.io.IOException;
 
+import com.example.grpc.client.grpcclient.GrpcServerApplication;
+
 @SpringBootApplication
 public class GrpcServerApplication extends SpringBootServletInitializer {
 
