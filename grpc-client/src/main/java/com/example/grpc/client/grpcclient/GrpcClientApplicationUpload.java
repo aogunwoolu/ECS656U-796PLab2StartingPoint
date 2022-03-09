@@ -28,7 +28,7 @@ public class GrpcClientApplicationUpload {
 	private final StorageService storageService;
 
 	@Autowired
-	public FileUploadController(StorageService storageService) {
+	public GrpcClientApplicationUpload(StorageService storageService) {
 		this.storageService = storageService;
 	}
 
