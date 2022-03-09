@@ -14,14 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class GRPCClientService {
     public String ping() {
-        	ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
-                .usePlaintext()
-                .build();        
-		PingPongServiceGrpc.PingPongServiceBlockingStub stub
-                = PingPongServiceGrpc.newBlockingStub(channel);        
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
+        .usePlaintext()
+        .build(); 
+
+		PingPongServiceGrpc.PingPongServiceBlockingStub stub = PingPongServiceGrpc.newBlockingStub(channel);        
 		PongResponse helloResponse = stub.ping(PingRequest.newBuilder()
-                .setPing("")
-                .build());        
+        .setPing("")
+        .build()); 
+
 		channel.shutdown();        
 		return helloResponse.getPong();
     }
@@ -29,8 +30,8 @@ public class GRPCClientService {
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",9090)
 		.usePlaintext()
 		.build();
-		MatrixServiceGrpc.MatrixServiceBlockingStub stub
-		 = MatrixServiceGrpc.newBlockingStub(channel);
+
+		MatrixServiceGrpc.MatrixServiceBlockingStub stub = MatrixServiceGrpc.newBlockingStub(channel);
 		MatrixReply A=stub.addBlock(MatrixRequest.newBuilder()
 			.setA00(1)
 			.setA01(2)
@@ -41,6 +42,7 @@ public class GRPCClientService {
 			.setB10(5)
 			.setB11(6)
 			.build());
+			
 		String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
 		resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='file' /><br/><br/><input type='submit' value='Submit' /></form>";
 		return resp;
