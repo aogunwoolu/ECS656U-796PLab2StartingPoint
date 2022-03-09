@@ -23,7 +23,7 @@ import com.example.uploadingfiles.storage.StorageFileNotFoundException;
 import com.example.uploadingfiles.storage.StorageService;
 
 @Controller
-public class FileUploadController {
+public class GrpcClientApplicationUpload {
 
 	private final StorageService storageService;
 
