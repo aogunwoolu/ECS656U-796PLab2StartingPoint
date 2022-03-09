@@ -41,16 +41,8 @@ public class GRPCClientService {
 			.setB10(5)
 			.setB11(6)
 			.build());
-		String resp= A.getC00()+" "+A.getC01()+"<br>"+A.getC10()+" "+A.getC11()+"\n";
-		resp += """
-			<br/>
-			<form method='POST' action='/upload' enctype='multipart/form-data'>
-				<input type='file' name='file' />
-				<br/>
-				<br/>
-				<input type='submit' value='Submit' />
-			</form>
-			""";
+		String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
+		resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='file' /><br/><br/><input type='submit' value='Submit' /></form>";
 		return resp;
     }
 }
