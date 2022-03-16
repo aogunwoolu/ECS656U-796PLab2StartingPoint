@@ -27,9 +27,9 @@ public class GRPCClientService {
 	MatrixServiceGrpc.MatrixServiceBlockingStub stub3 = MatrixServiceGrpc.newBlockingStub(channel3);
 
 	ArrayList<HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>> Servers = Arrays.asList(
-		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel1, stub1),
-		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel2, stub2),
-		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel3, stub3)
+		HashMap.of(channel1, stub1),
+		HashMap.of(channel2, stub2),
+		HashMap.of(channel3, stub3)
 	);
 
     public String ping() {
