@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class GRPCClientService {
@@ -27,9 +28,9 @@ public class GRPCClientService {
 	MatrixServiceGrpc.MatrixServiceBlockingStub stub3 = MatrixServiceGrpc.newBlockingStub(channel3);
 
 	ArrayList<HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>> Servers = Arrays.asList(
-		HashMap.of(channel1, stub1),
-		HashMap.of(channel2, stub2),
-		HashMap.of(channel3, stub3)
+		Map.of(channel1, stub1),
+		Map.of(channel2, stub2),
+		Map.of(channel3, stub3)
 	);
 
     public String ping() {
