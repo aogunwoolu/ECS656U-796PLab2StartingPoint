@@ -12,6 +12,8 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import java.util.List;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,24 +22,26 @@ import java.util.Map;
 @Service
 public class GRPCClientService {
 
-	List<ManagedChannel> Servers = Arrays.asList(
-		ManagedChannelBuilder.forAddress("35.225.79.176", 8080) .usePlaintext().build(),
-		ManagedChannelBuilder.forAddress("34.123.43.111", 8080) .usePlaintext().build(),
-		ManagedChannelBuilder.forAddress("35.239.236.128", 8080) .usePlaintext().build()
+	List<ManagedChannelBuilder> channels = Arrays.asList(
+		ManagedChannelBuilder.forAddress("35.225.79.176", 8080),
+		ManagedChannelBuilder.forAddress("34.123.43.111", 8080),
+		ManagedChannelBuilder.forAddress("35.239.236.128", 8080)
 	);
 
 	List<MatrixServiceGrpc.MatrixServiceBlockingStub> stubs = Arrays.asList(
-		MatrixServiceGrpc.newBlockingStub(Servers.get(0)),
-		MatrixServiceGrpc.newBlockingStub(Servers.get(1)),
-		MatrixServiceGrpc.newBlockingStub(Servers.get(2))
+		MatrixServiceGrpc.newBlockingStub(channels.get(0)),
+		MatrixServiceGrpc.newBlockingStub(channels.get(1)),
+		MatrixServiceGrpc.newBlockingStub(channels.get(2))
 	);
 
+	int currentServer = ThreadLocalRandom.current().nextInt(0, channels.size());
+
     public String ping() {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090)
+        ManagedChannel channel = channels.get(currentServer)
         .usePlaintext()
         .build(); 
 
-		PingPongServiceGrpc.PingPongServiceBlockingStub stub = PingPongServiceGrpc.newBlockingStub(channel);        
+		PingPongServiceGrpc.PingPongServiceBlockingStub stub = stubs.get(currentServer);        
 		PongResponse helloResponse = stub.ping(PingRequest.newBuilder()
         .setPing("")
         .build()); 
