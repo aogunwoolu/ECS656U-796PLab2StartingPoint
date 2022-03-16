@@ -12,25 +12,24 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class GRPCClientService {
-	ManagedChannel channel1 = ManagedChannelBuilder.forAddress("35.225.79.176", 8080) .usePlaintext().build();
-	ManagedChannel channel2 = ManagedChannelBuilder.forAddress("34.123.43.111", 8080) .usePlaintext().build();
-	ManagedChannel channel3 = ManagedChannelBuilder.forAddress("35.239.236.128", 8080) .usePlaintext().build();
 
-	MatrixServiceGrpc.MatrixServiceBlockingStub stub1 = MatrixServiceGrpc.newBlockingStub(channel1);
-	MatrixServiceGrpc.MatrixServiceBlockingStub stub2 = MatrixServiceGrpc.newBlockingStub(channel2);
-	MatrixServiceGrpc.MatrixServiceBlockingStub stub3 = MatrixServiceGrpc.newBlockingStub(channel3);
+	List<ManagedChannel> Servers = Arrays.asList(
+		ManagedChannelBuilder.forAddress("35.225.79.176", 8080) .usePlaintext().build(),
+		ManagedChannelBuilder.forAddress("34.123.43.111", 8080) .usePlaintext().build(),
+		ManagedChannelBuilder.forAddress("35.239.236.128", 8080) .usePlaintext().build()
+	);
 
-	ArrayList<HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>> Servers = Arrays.asList(
-		Map.of(channel1, stub1),
-		Map.of(channel2, stub2),
-		Map.of(channel3, stub3)
+	List<MatrixServiceGrpc.MatrixServiceBlockingStub> stubs = Arrays.asList(
+		MatrixServiceGrpc.newBlockingStub(Servers.get(0)),
+		MatrixServiceGrpc.newBlockingStub(Servers.get(1)),
+		MatrixServiceGrpc.newBlockingStub(Servers.get(2))
 	);
 
     public String ping() {
