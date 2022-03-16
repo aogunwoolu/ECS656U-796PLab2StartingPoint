@@ -14,15 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-class Tuple<X, Y> { 
-	public final X x; 
-	public final Y y; 
-	public Tuple(X x, Y y) { 
-	  this.x = x; 
-	  this.y = y; 
-	} 
-  } 
+import java.util.HashMap;
 
 @Service
 public class GRPCClientService {
@@ -34,10 +26,10 @@ public class GRPCClientService {
 	MatrixServiceGrpc.MatrixServiceBlockingStub stub2 = MatrixServiceGrpc.newBlockingStub(channel2);
 	MatrixServiceGrpc.MatrixServiceBlockingStub stub3 = MatrixServiceGrpc.newBlockingStub(channel3);
 
-	ArrayList<Tuple<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>> Servers = Arrays.asList(
-		new Tuple<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel1, stub1),
-		new Tuple<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel2, stub2),
-		new Tuple<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel3, stub3)
+	ArrayList<HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>> Servers = Arrays.asList(
+		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel1, stub1),
+		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel2, stub2),
+		new HashMap<ManagedChannel, MatrixServiceGrpc.MatrixServiceBlockingStub>(channel3, stub3)
 	);
 
     public String ping() {
