@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrices</title>
+</head>
+<body>
+    <h1>Matrices:</h1>
+    <br/>
+    <table>
+        <tr th:each="row,iterStat : ${A}">
+            <td th:each="itm,iterStat : ${row}">
+                <p th:text="${itm}"></p>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr th:each="row,iterStat : ${B}">
+            <td th:each="itm,iterStat : ${row}">
+                <p th:text="${itm}"></p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

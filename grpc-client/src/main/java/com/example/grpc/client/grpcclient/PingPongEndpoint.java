@@ -15,12 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 @Controller 
-public class PingPongEndpoint {    
+public class PingPongEndpoint { 
+    
+    int[][] currentA;
+    int[][] currentB;
 
 	GRPCClientService grpcClientService;  
 
@@ -39,12 +43,21 @@ public class PingPongEndpoint {
 		//return grpcClientService.add();
         return "add";
 	}
+
+    @GetMapping("/display")
+	public String displayUploaded(Model model) {
+        model.addAttribute("A", currentA);
+        model.addAttribute("B", currentB);
+		//return grpcClientService.add();
+        return "display";
+	}
+
 	// @PostMapping("/upload")
 	// public String add() {
 	// 	return grpcClientService.upload();
 	// }
 	@PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("matrixA") MultipartFile matrixA, @RequestParam("matrixB") MultipartFile matrixB, RedirectAttributes redirectAttributes) {
+    public RedirectView handleFileUpload(@RequestParam("matrixA") MultipartFile matrixA, @RequestParam("matrixB") MultipartFile matrixB, RedirectAttributes redirectAttributes) {
 
         String contentA = new String(); 
         String contentB = new String(); 
@@ -101,6 +114,9 @@ public class PingPongEndpoint {
             //throw new MatrixNotAPowerOfTwoException();
 			System.out.println("not power of 2");
         }
-        return returnResult;
+
+        RedirectView rv = new RedirectView();
+        rv.setUrl("display");
+        return rv;
     }
 }
