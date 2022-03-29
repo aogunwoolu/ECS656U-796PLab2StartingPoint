@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,14 +28,15 @@ public class PingPongEndpoint {
         this.grpcClientService = grpcClientService;
     }    
 	@GetMapping("/ping")
-    public String ping() {
-        //return grpcClientService.ping();
+    public String ping(Model model) {
+        model.addAttribute("response", grpcClientService.ping());
         return "test";
     }
 
     @GetMapping("/add")
 	public String add() {
-		return grpcClientService.add();
+		//return grpcClientService.add();
+        return "test";
 	}
 	// @PostMapping("/upload")
 	// public String add() {
