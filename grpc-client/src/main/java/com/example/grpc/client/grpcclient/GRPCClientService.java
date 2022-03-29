@@ -46,7 +46,7 @@ public class GRPCClientService {
 		.build();
 
 		//PingPongServiceGrpc.PingPongServiceBlockingStub stub = stubs.get(channel);  
-		MatrixServiceGrpc.MatrixServiceBlockingStub stub = MatrixServiceGrpc.newBlockingStub(channel);
+		PingPongServiceGrpc.PingPongServiceBlockingStub stub = PingPongServiceGrpc.newBlockingStub(channel);
 		PongResponse helloResponse = stub.ping(PingRequest.newBuilder()
         .setPing("")
         .build()); 
