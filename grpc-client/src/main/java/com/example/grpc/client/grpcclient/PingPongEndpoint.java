@@ -37,7 +37,7 @@ public class PingPongEndpoint {
 	// public String add() {
 	// 	return grpcClientService.upload();
 	// }
-	@PostMapping("/")
+	@PostMapping("/upload")
     public String handleFileUpload(@RequestParam("matrixA") MultipartFile matrixA, @RequestParam("matrixB") MultipartFile matrixB, RedirectAttributes redirectAttributes) {
 
         String contentA = new String(); 
@@ -45,6 +45,9 @@ public class PingPongEndpoint {
         try {
             contentA = new String(matrixA.getBytes());
             contentB = new String(matrixB.getBytes());
+
+			System.out.println(contentA);
+			System.out.println(contentB);
         } catch (IOException e) {
             System.out.println("Can't read file input stream");
         }
