@@ -78,14 +78,14 @@ public class PingPongEndpoint {
             throw new RuntimeException("This was thrown intentionally");
         }
 
-        int[][] intResult = new int[length][length];
+        //int[][] intResult = new int[length][length];
         String returnResult = new String(); 
 
         if ((length != 0) && ((length & (length - 1)) == 0)) {
-            intResult = grpcClientService.mult(inputA, inputB);
-            String result = Arrays.deepToString(intResult);
-            redirectAttributes.addFlashAttribute("message", result);
-            returnResult = "redirect:/";
+            String intResult = grpcClientService.mult(inputA, inputB);
+            // String result = Arrays.deepToString(intResult);
+            // redirectAttributes.addFlashAttribute("message", result);
+            // returnResult = "redirect:/";
         }
         else {
             //throw new MatrixNotAPowerOfTwoException();
