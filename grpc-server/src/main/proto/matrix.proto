@@ -39,7 +39,7 @@ message MatrixRequest {
 }
 
 // The request message containing n size matrix
-message MatrixRequest {
+message MatrixNRequest {
   repeated Row rows = 1;
 }
 
