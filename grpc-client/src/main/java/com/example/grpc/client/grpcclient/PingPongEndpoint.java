@@ -26,9 +26,11 @@ public class PingPongEndpoint {
         this.grpcClientService = grpcClientService;
     }    
 	@GetMapping("/ping")
-    	public String ping() {
-        	return grpcClientService.ping();
-    	}
+    public String ping() {
+        //return grpcClientService.ping();
+        return "test";
+    }
+
     @GetMapping("/add")
 	public String add() {
 		return grpcClientService.add();
