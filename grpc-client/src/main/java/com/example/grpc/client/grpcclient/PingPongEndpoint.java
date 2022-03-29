@@ -106,6 +106,9 @@ public class PingPongEndpoint {
 
         if ((length != 0) && ((length & (length - 1)) == 0)) {
             String intResult = grpcClientService.mult(inputA, inputB);
+
+            currentA = inputA;
+            currentB = inputB;
             // String result = Arrays.deepToString(intResult);
             // redirectAttributes.addFlashAttribute("message", result);
             // returnResult = "redirect:/";
