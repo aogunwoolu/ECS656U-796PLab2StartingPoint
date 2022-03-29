@@ -42,6 +42,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.0.11.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>3.0.11.RELEASE</version>
+		</dependency>
 		<!-- For the server (only) -->
 		<dependency>
 			<groupId>net.devh</groupId>
@@ -59,11 +69,6 @@
 			<artifactId>grpc-client-spring-boot-autoconfigure</artifactId>
 			<version>2.5.1.RELEASE</version>
 			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>3.0.15.RELEASE</version>
 		</dependency>
 
 	</dependencies>
