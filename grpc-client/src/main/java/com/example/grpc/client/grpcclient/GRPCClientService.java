@@ -34,7 +34,7 @@ public class GRPCClientService {
 	// 	MatrixServiceGrpc.newBlockingStub(channels.get(2))
 	// );
 
-	int currentServer = ThreadLocalRandom.current().nextInt(0, channels.size());
+	//int currentServer = ThreadLocalRandom.current().nextInt(0, channels.size());
 
     public String ping() {
         // ManagedChannel channel = channels.get(currentServer)
