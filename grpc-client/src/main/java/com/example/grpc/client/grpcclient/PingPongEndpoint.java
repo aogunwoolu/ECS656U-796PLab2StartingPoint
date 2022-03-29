@@ -67,10 +67,10 @@ public class PingPongEndpoint {
         int[][] inputA = new int[length][length];
         int[][] inputB = new int[length][length];
         for (int i=0; i < length; i++) {
-            // split_contentA[i] = split_contentA[i].trim();
-            // split_contentB[i] = split_contentB[i].trim();
-            String[] single_intA = split_contentA[i].split(" ");
-            String[] single_intB = split_contentB[i].split(" ");
+            split_contentA[i] = split_contentA[i].trim();
+            split_contentB[i] = split_contentB[i].trim();
+            String[] single_intA = split_contentA[i].split(",");
+            String[] single_intB = split_contentB[i].split(",");
 
             for (int j=0; j < length; j++) {
                 inputA[i][j] = Integer.valueOf(single_intA[j]);
