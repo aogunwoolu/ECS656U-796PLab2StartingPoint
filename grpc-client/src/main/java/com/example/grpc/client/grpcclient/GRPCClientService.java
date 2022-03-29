@@ -72,7 +72,7 @@ public class GRPCClientService {
 			.build());
 			
 		String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
-		resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='file' /><br/><br/><input type='submit' value='Submit' /></form>";
+		resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='matrixA' /><input type='file' name='matrixB' /><br/><br/><input type='submit' value='Submit' /></form>";
 		return resp;
     }
 	public String mult(int[][] inputA, int[][] inputB){
