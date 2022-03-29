@@ -15,6 +15,6 @@ public class PingPongServiceImpl extends PingPongServiceGrpc.PingPongServiceImpl
                 .setPong(ping)
                 .build();        
 		responseObserver.onNext(response);
-        	responseObserver.onCompleted();
+        responseObserver.onCompleted();
     }
 }
