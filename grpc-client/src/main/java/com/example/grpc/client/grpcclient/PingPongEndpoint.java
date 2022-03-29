@@ -58,19 +58,19 @@ public class PingPongEndpoint {
             System.out.println("Can't read file input stream");
         }
 
-        contentA = contentA.substring(0, contentA.length()-1);
-        contentB = contentA.substring(0, contentA.length()-1);
-        String[] split_contentA = contentA.split(";");
-        String[] split_contentB = contentB.split(";");
+        //contentA = contentA.substring(0, contentA.length()-1);
+        //contentB = contentA.substring(0, contentA.length()-1);
+        String[] split_contentA = contentA.split("\n");
+        String[] split_contentB = contentB.split("\n");
         int length = split_contentA.length;
 
         int[][] inputA = new int[length][length];
         int[][] inputB = new int[length][length];
         for (int i=0; i < length; i++) {
-            split_contentA[i] = split_contentA[i].trim();
-            split_contentB[i] = split_contentB[i].trim();
-            String[] single_intA = split_contentA[i].split(", ");
-            String[] single_intB = split_contentB[i].split(", ");
+            // split_contentA[i] = split_contentA[i].trim();
+            // split_contentB[i] = split_contentB[i].trim();
+            String[] single_intA = split_contentA[i].split(" ");
+            String[] single_intB = split_contentB[i].split(" ");
 
             for (int j=0; j < length; j++) {
                 inputA[i][j] = Integer.valueOf(single_intA[j]);
@@ -84,7 +84,8 @@ public class PingPongEndpoint {
         }
         else if (inputA.length != inputB.length) {
             //throw new InputMatricesNotSameSizeException();
-            throw new RuntimeException("This was thrown intentionally");
+            //throw new RuntimeException("This was thrown intentionally");
+            System.out.println("not power of 2");
         }
 
         //int[][] intResult = new int[length][length];
