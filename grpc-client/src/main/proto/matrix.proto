@@ -38,6 +38,15 @@ message MatrixRequest {
   int32 b11 = 8;
 }
 
+// The request message containing n size matrix
+message MatrixRequest {
+  repeated Row rows = 1;
+}
+
+message Row {
+  repeated int32 cols = 1;
+}
+
 // The response message containing the result marix
 message MatrixReply {
   int32 c00 = 1;

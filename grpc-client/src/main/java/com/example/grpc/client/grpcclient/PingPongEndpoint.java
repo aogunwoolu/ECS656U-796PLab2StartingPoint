@@ -22,7 +22,8 @@ import java.util.Arrays;
 @Controller 
 public class PingPongEndpoint {    
 
-	GRPCClientService grpcClientService;    
+	GRPCClientService grpcClientService;  
+
 	@Autowired
     public PingPongEndpoint(GRPCClientService grpcClientService) {
         this.grpcClientService = grpcClientService;
@@ -36,7 +37,7 @@ public class PingPongEndpoint {
     @GetMapping("/add")
 	public String add() {
 		//return grpcClientService.add();
-        return "test";
+        return "add";
 	}
 	// @PostMapping("/upload")
 	// public String add() {
