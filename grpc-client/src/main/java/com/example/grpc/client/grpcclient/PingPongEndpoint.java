@@ -23,8 +23,8 @@ import java.util.Arrays;
 @Controller 
 public class PingPongEndpoint { 
     
-    int[][] currentA;
-    int[][] currentB;
+    Integer[][] currentA;
+    Integer[][] currentB;
 
 	GRPCClientService grpcClientService;  
 
@@ -38,10 +38,21 @@ public class PingPongEndpoint {
         return "test";
     }
 
+    @GetMapping("/")
+	public String upload(Model model) {
+        return "upload";
+	}
+
     @GetMapping("/add")
-	public String add() {
-		//return grpcClientService.add();
-        return "add";
+	public String add(Model model) {
+		model.addAttribute("C", grpcClientService.add(currentA, currentB));
+        return "result";
+	}
+
+    @GetMapping("/mult")
+	public String mult(Model model) {
+		model.addAttribute("C", grpcClientService.mult(currentA, currentB));
+        return "result";
 	}
 
     @GetMapping("/display")
@@ -77,8 +88,8 @@ public class PingPongEndpoint {
         String[] split_contentB = contentB.split("\n");
         int length = split_contentA.length;
 
-        int[][] inputA = new int[length][length];
-        int[][] inputB = new int[length][length];
+        Integer[][] inputA = new Integer[length][length];
+        Integer[][] inputB = new Integer[length][length];
         for (int i=0; i < length; i++) {
             split_contentA[i] = split_contentA[i].trim();
             split_contentB[i] = split_contentB[i].trim();
@@ -105,7 +116,7 @@ public class PingPongEndpoint {
         String returnResult = new String(); 
 
         if ((length != 0) && ((length & (length - 1)) == 0)) {
-            String intResult = grpcClientService.mult(inputA, inputB);
+            //String intResult = grpcClientService.mult(inputA, inputB);
 
             currentA = inputA;
             currentB = inputB;

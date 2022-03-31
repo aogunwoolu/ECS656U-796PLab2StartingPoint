@@ -3,8 +3,15 @@ package com.example.grpc.client.grpcclient;
 import com.example.grpc.server.grpcserver.PingRequest;
 import com.example.grpc.server.grpcserver.PongResponse;
 import com.example.grpc.server.grpcserver.PingPongServiceGrpc;
+
 import com.example.grpc.server.grpcserver.MatrixRequest;
 import com.example.grpc.server.grpcserver.MatrixReply;
+
+import com.example.grpc.server.grpcserver.MatrixN;
+import com.example.grpc.server.grpcserver.Row;
+import com.example.grpc.server.grpcserver.RequestMatrices;
+
+import com.example.grpc.server.grpcserver.RequestMatrices.Builder;
 import com.example.grpc.server.grpcserver.MatrixServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -54,49 +61,90 @@ public class GRPCClientService {
 		channel.shutdown();        
 		return helloResponse.getPong();
     }
-    public String add(){
+    public Integer[][] add(Integer[][] inputA, Integer[][] inputB){
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",9090)
 		.usePlaintext()
 		.build();
 
 		MatrixServiceGrpc.MatrixServiceBlockingStub stub = MatrixServiceGrpc.newBlockingStub(channel);
-		MatrixReply A=stub.addBlock(MatrixRequest.newBuilder()
-			.setA00(1)
-			.setA01(2)
-			.setA10(5)
-			.setA11(6)
-			.setB00(1)
-			.setB01(2)
-			.setB10(5)
-			.setB11(6)
-			.build());
+		
+		Builder Requestbuilder = RequestMatrices.newBuilder();
+
+		MatrixN.Builder Abuilder = MatrixN.newBuilder();
+		MatrixN.Builder Bbuilder = MatrixN.newBuilder();
+		
+		for (Integer[] row : inputA) {
+			Abuilder.addRows(Row.newBuilder().addAllCols(Arrays.asList(row)).build());
+		}
+
+		for (Integer[] row : inputB) {
+			Bbuilder.addRows(Row.newBuilder().addAllCols(Arrays.asList(row)).build());
+		}
+
+		Requestbuilder.setA(Abuilder);
+		Requestbuilder.setB(Bbuilder);
+		
+		MatrixReply A=stub.addBlock(
+			Requestbuilder.build()
+		);
+
+		MatrixN rows = A.getC();
+		Integer[][] result = new Integer[rows.getRowsCount()][rows.getRows(0).getColsCount()];
+
+		for (int i = 0; i < rows.getRowsCount(); i++) {
+			Row row = rows.getRows(i);
+			for (int j = 0; j < row.getColsCount(); j++) {
+				result[i][j] = row.getCols(j);
+			}
+		}
+
+		channel.shutdown();
 			
-		String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
-		resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='matrixA' /><input type='file' name='matrixB' /><br/><br/><input type='submit' value='Submit' /></form>";
-		return resp;
+		//String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
+		//resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='matrixA' /><input type='file' name='matrixB' /><br/><br/><input type='submit' value='Submit' /></form>";
+		return result;
     }
-	public String mult(int[][] inputA, int[][] inputB){
+	public Integer[][] mult(Integer[][] inputA, Integer[][] inputB){
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",9090)
 		.usePlaintext()
 		.build();
 
-		System.out.println(inputA.length);
-		System.out.println(inputB.length);
+		MatrixServiceGrpc.MatrixServiceBlockingStub stub = MatrixServiceGrpc.newBlockingStub(channel);
+		
+		Builder Requestbuilder = RequestMatrices.newBuilder();
 
-		// MatrixServiceGrpc.MatrixServiceBlockingStub stub = MatrixServiceGrpc.newBlockingStub(channel);
-		// MatrixReply A=stub.addBlock(MatrixRequest.newBuilder()
-		// 	.setA00(1)
-		// 	.setA01(2)
-		// 	.setA10(5)
-		// 	.setA11(6)
-		// 	.setB00(1)
-		// 	.setB01(2)
-		// 	.setB10(5)
-		// 	.setB11(6)
-		// 	.build());
+		MatrixN.Builder Abuilder = MatrixN.newBuilder();
+		MatrixN.Builder Bbuilder = MatrixN.newBuilder();
+		
+		for (Integer[] row : inputA) {
+			Abuilder.addRows(Row.newBuilder().addAllCols(Arrays.asList(row)).build());
+		}
+
+		for (Integer[] row : inputB) {
+			Bbuilder.addRows(Row.newBuilder().addAllCols(Arrays.asList(row)).build());
+		}
+
+		Requestbuilder.setA(Abuilder);
+		Requestbuilder.setB(Bbuilder);
+		
+		MatrixReply A=stub.multiplyBlock(
+			Requestbuilder.build()
+		);
+
+		MatrixN rows = A.getC();
+		Integer[][] result = new Integer[rows.getRowsCount()][rows.getRows(0).getColsCount()];
+
+		for (int i = 0; i < rows.getRowsCount(); i++) {
+			Row row = rows.getRows(i);
+			for (int j = 0; j < row.getColsCount(); j++) {
+				result[i][j] = row.getCols(j);
+			}
+		}
+
+		channel.shutdown();
 			
 		//String resp= "<table><tr><td>"+ A.getC00()+"</td><td>"+A.getC01()+"</td><tr><td>"+A.getC10()+"</td><td>"+A.getC11()+"<td></tr></table>\n";
-		//resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='file' /><br/><br/><input type='submit' value='Submit' /></form>";
-		return "";
+		//resp += "<br/><form method='POST' action='/upload' enctype='multipart/form-data'><input type='file' name='matrixA' /><input type='file' name='matrixB' /><br/><br/><input type='submit' value='Submit' /></form>";
+		return result;
     }
 }
