@@ -34,6 +34,7 @@ import java.util.Random;
 @Service
 public class GRPCClientService {
 
+	String[] ips;
 	List<ManagedChannel> channels = new LinkedList<>();
 	List<MatrixServiceGrpc.MatrixServiceBlockingStub> stubs = new LinkedList<>();
 
@@ -41,6 +42,8 @@ public class GRPCClientService {
 	int server_index = 0;
 
 	public void setup(String[] ips) {
+		this.ips = ips;
+
 		for (String ip : ips) {
 			channels.add(ManagedChannelBuilder.forAddress(ip, 9090).usePlaintext().build());
 		}
@@ -50,6 +53,10 @@ public class GRPCClientService {
 		}
 
 		this.active_servers = ips.length;
+	}
+
+	public void setup() {
+		setup(ips);
 	}
 
     public String ping() {
@@ -86,6 +93,7 @@ public class GRPCClientService {
 
     public Integer[][] add(Integer[][] inputA, Integer[][] inputB){
 		//https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
+		setup();
 
 		server_index = 0;
 
@@ -145,6 +153,7 @@ public class GRPCClientService {
 
 	public Integer[][] mult(Integer[][] inputA, Integer[][] inputB){
 		//https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
+		setup();
 
 		server_index = 0;
 
