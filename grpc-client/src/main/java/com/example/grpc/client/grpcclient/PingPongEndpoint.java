@@ -27,7 +27,7 @@ public class PingPongEndpoint {
     Integer[][] currentA;
     Integer[][] currentB;
 
-    String[] ips = new String[]{"localhost", "localhost"};
+    String[] ips = new String[]{"35.232.169.222", "35.232.169.222", "35.232.169.222", "35.232.169.222"};
 
 	GRPCClientService grpcClientService;  
 

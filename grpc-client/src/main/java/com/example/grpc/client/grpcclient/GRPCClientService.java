@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ThreadLocalRandom;
 
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,15 +34,15 @@ import java.util.Random;
 @Service
 public class GRPCClientService {
 
-	List<ManagedChannel> channels;
-	List<MatrixServiceGrpc.MatrixServiceBlockingStub> stubs;
+	List<ManagedChannel> channels = new LinkedList<>();
+	List<MatrixServiceGrpc.MatrixServiceBlockingStub> stubs = new LinkedList<>();
 
 	int active_servers;
 	int server_index = 0;
 
 	public void setup(String[] ips) {
 		for (String ip : ips) {
-			channels.add(ManagedChannelBuilder.forAddress(ip, 8080).usePlaintext().build());
+			channels.add(ManagedChannelBuilder.forAddress(ip, 9090).usePlaintext().build());
 		}
 
 		for (Channel channel : channels) {
@@ -91,7 +92,7 @@ public class GRPCClientService {
 		int deadline = 10;
 		Integer n = inputA.length;
 
-		Random r = new Random(); int min = 0; int max = 8;
+		Random r = new Random(); int min = 0; int max = channels.size() - 1;
 		int random = r.nextInt(max-min) + min;
 
 		Integer[][] result = new Integer[n][n];
@@ -150,7 +151,7 @@ public class GRPCClientService {
 		int deadline = 10;
 		Integer n = inputA.length;
 
-		Random r = new Random(); int min = 0; int max = 8;
+		Random r = new Random(); int min = 0; int max = channels.size() - 1;
 		int random = r.nextInt(max-min) + min;
 
 		Integer[][] result = new Integer[n][n];
