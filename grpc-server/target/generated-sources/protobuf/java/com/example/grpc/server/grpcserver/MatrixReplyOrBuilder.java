@@ -8,15 +8,7 @@ public interface MatrixReplyOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
+   * <code>int32 C = 1;</code>
    */
-  boolean hasC();
-  /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
-   */
-  com.example.grpc.server.grpcserver.MatrixN getC();
-  /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
-   */
-  com.example.grpc.server.grpcserver.MatrixNOrBuilder getCOrBuilder();
+  int getC();
 }

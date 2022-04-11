@@ -22,14 +22,18 @@ import java.util.Arrays;
 
 @Controller 
 public class PingPongEndpoint { 
+    //distributed-cw-a
     
     Integer[][] currentA;
     Integer[][] currentB;
+
+    String[] ips = new String[]{"localhost", "localhost"};
 
 	GRPCClientService grpcClientService;  
 
 	@Autowired
     public PingPongEndpoint(GRPCClientService grpcClientService) {
+        grpcClientService.setup(ips);
         this.grpcClientService = grpcClientService;
     }    
 	@GetMapping("/ping")
@@ -39,7 +43,7 @@ public class PingPongEndpoint {
     }
 
     @GetMapping("/")
-	public String upload(Model model) {
+	public String upload() {
         return "upload";
 	}
 

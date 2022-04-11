@@ -5,7 +5,7 @@ package com.example.grpc.server.grpcserver;
 
 /**
  * <pre>
- * The request message containing the two matrices
+ * The request message containing the two matricies
  * </pre>
  *
  * Protobuf type {@code matrixmult.MatrixRequest}
@@ -417,7 +417,7 @@ public  final class MatrixRequest extends
   }
   /**
    * <pre>
-   * The request message containing the two matrices
+   * The request message containing the two matricies
    * </pre>
    *
    * Protobuf type {@code matrixmult.MatrixRequest}

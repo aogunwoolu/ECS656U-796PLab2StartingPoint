@@ -31,26 +31,26 @@ public final class MatrixServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.RequestMatrices,
+  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.IndvRequestMatrices,
       com.example.grpc.server.grpcserver.MatrixReply> METHOD_MULTIPLY_BLOCK =
-      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.RequestMatrices, com.example.grpc.server.grpcserver.MatrixReply>newBuilder()
+      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.IndvRequestMatrices, com.example.grpc.server.grpcserver.MatrixReply>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
               "matrixmult.MatrixService", "MultiplyBlock"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.example.grpc.server.grpcserver.RequestMatrices.getDefaultInstance()))
+              com.example.grpc.server.grpcserver.IndvRequestMatrices.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.example.grpc.server.grpcserver.MatrixReply.getDefaultInstance()))
           .build();
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.RequestMatrices,
+  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.IndvRequestMatrices,
       com.example.grpc.server.grpcserver.MatrixReply> METHOD_ADD_BLOCK =
-      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.RequestMatrices, com.example.grpc.server.grpcserver.MatrixReply>newBuilder()
+      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.IndvRequestMatrices, com.example.grpc.server.grpcserver.MatrixReply>newBuilder()
           .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
           .setFullMethodName(generateFullMethodName(
               "matrixmult.MatrixService", "AddBlock"))
           .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-              com.example.grpc.server.grpcserver.RequestMatrices.getDefaultInstance()))
+              com.example.grpc.server.grpcserver.IndvRequestMatrices.getDefaultInstance()))
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.example.grpc.server.grpcserver.MatrixReply.getDefaultInstance()))
           .build();
@@ -87,14 +87,14 @@ public final class MatrixServiceGrpc {
 
     /**
      */
-    public void multiplyBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+    public void multiplyBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request,
         io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_MULTIPLY_BLOCK, responseObserver);
     }
 
     /**
      */
-    public void addBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+    public void addBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request,
         io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_ADD_BLOCK, responseObserver);
     }
@@ -105,14 +105,14 @@ public final class MatrixServiceGrpc {
             METHOD_MULTIPLY_BLOCK,
             asyncUnaryCall(
               new MethodHandlers<
-                com.example.grpc.server.grpcserver.RequestMatrices,
+                com.example.grpc.server.grpcserver.IndvRequestMatrices,
                 com.example.grpc.server.grpcserver.MatrixReply>(
                   this, METHODID_MULTIPLY_BLOCK)))
           .addMethod(
             METHOD_ADD_BLOCK,
             asyncUnaryCall(
               new MethodHandlers<
-                com.example.grpc.server.grpcserver.RequestMatrices,
+                com.example.grpc.server.grpcserver.IndvRequestMatrices,
                 com.example.grpc.server.grpcserver.MatrixReply>(
                   this, METHODID_ADD_BLOCK)))
           .build();
@@ -142,7 +142,7 @@ public final class MatrixServiceGrpc {
 
     /**
      */
-    public void multiplyBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+    public void multiplyBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request,
         io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_MULTIPLY_BLOCK, getCallOptions()), request, responseObserver);
@@ -150,7 +150,7 @@ public final class MatrixServiceGrpc {
 
     /**
      */
-    public void addBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+    public void addBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request,
         io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(METHOD_ADD_BLOCK, getCallOptions()), request, responseObserver);
@@ -180,14 +180,14 @@ public final class MatrixServiceGrpc {
 
     /**
      */
-    public com.example.grpc.server.grpcserver.MatrixReply multiplyBlock(com.example.grpc.server.grpcserver.RequestMatrices request) {
+    public com.example.grpc.server.grpcserver.MatrixReply multiplyBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request) {
       return blockingUnaryCall(
           getChannel(), METHOD_MULTIPLY_BLOCK, getCallOptions(), request);
     }
 
     /**
      */
-    public com.example.grpc.server.grpcserver.MatrixReply addBlock(com.example.grpc.server.grpcserver.RequestMatrices request) {
+    public com.example.grpc.server.grpcserver.MatrixReply addBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request) {
       return blockingUnaryCall(
           getChannel(), METHOD_ADD_BLOCK, getCallOptions(), request);
     }
@@ -217,7 +217,7 @@ public final class MatrixServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.example.grpc.server.grpcserver.MatrixReply> multiplyBlock(
-        com.example.grpc.server.grpcserver.RequestMatrices request) {
+        com.example.grpc.server.grpcserver.IndvRequestMatrices request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_MULTIPLY_BLOCK, getCallOptions()), request);
     }
@@ -225,7 +225,7 @@ public final class MatrixServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.example.grpc.server.grpcserver.MatrixReply> addBlock(
-        com.example.grpc.server.grpcserver.RequestMatrices request) {
+        com.example.grpc.server.grpcserver.IndvRequestMatrices request) {
       return futureUnaryCall(
           getChannel().newCall(METHOD_ADD_BLOCK, getCallOptions()), request);
     }
@@ -252,11 +252,11 @@ public final class MatrixServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_MULTIPLY_BLOCK:
-          serviceImpl.multiplyBlock((com.example.grpc.server.grpcserver.RequestMatrices) request,
+          serviceImpl.multiplyBlock((com.example.grpc.server.grpcserver.IndvRequestMatrices) request,
               (io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply>) responseObserver);
           break;
         case METHODID_ADD_BLOCK:
-          serviceImpl.addBlock((com.example.grpc.server.grpcserver.RequestMatrices) request,
+          serviceImpl.addBlock((com.example.grpc.server.grpcserver.IndvRequestMatrices) request,
               (io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply>) responseObserver);
           break;
         default:

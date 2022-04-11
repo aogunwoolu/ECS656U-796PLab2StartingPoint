@@ -19,6 +19,7 @@ public  final class MatrixReply extends
     super(builder);
   }
   private MatrixReply() {
+    c_ = 0;
   }
 
   @java.lang.Override
@@ -46,17 +47,9 @@ public  final class MatrixReply extends
             }
             break;
           }
-          case 10: {
-            com.example.grpc.server.grpcserver.MatrixN.Builder subBuilder = null;
-            if (c_ != null) {
-              subBuilder = c_.toBuilder();
-            }
-            c_ = input.readMessage(com.example.grpc.server.grpcserver.MatrixN.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(c_);
-              c_ = subBuilder.buildPartial();
-            }
+          case 8: {
 
+            c_ = input.readInt32();
             break;
           }
         }
@@ -83,24 +76,12 @@ public  final class MatrixReply extends
   }
 
   public static final int C_FIELD_NUMBER = 1;
-  private com.example.grpc.server.grpcserver.MatrixN c_;
+  private int c_;
   /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
+   * <code>int32 C = 1;</code>
    */
-  public boolean hasC() {
-    return c_ != null;
-  }
-  /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
-   */
-  public com.example.grpc.server.grpcserver.MatrixN getC() {
-    return c_ == null ? com.example.grpc.server.grpcserver.MatrixN.getDefaultInstance() : c_;
-  }
-  /**
-   * <code>.matrixmult.MatrixN C = 1;</code>
-   */
-  public com.example.grpc.server.grpcserver.MatrixNOrBuilder getCOrBuilder() {
-    return getC();
+  public int getC() {
+    return c_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -115,8 +96,8 @@ public  final class MatrixReply extends
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (c_ != null) {
-      output.writeMessage(1, getC());
+    if (c_ != 0) {
+      output.writeInt32(1, c_);
     }
   }
 
@@ -125,9 +106,9 @@ public  final class MatrixReply extends
     if (size != -1) return size;
 
     size = 0;
-    if (c_ != null) {
+    if (c_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getC());
+        .computeInt32Size(1, c_);
     }
     memoizedSize = size;
     return size;
@@ -145,11 +126,8 @@ public  final class MatrixReply extends
     com.example.grpc.server.grpcserver.MatrixReply other = (com.example.grpc.server.grpcserver.MatrixReply) obj;
 
     boolean result = true;
-    result = result && (hasC() == other.hasC());
-    if (hasC()) {
-      result = result && getC()
-          .equals(other.getC());
-    }
+    result = result && (getC()
+        == other.getC());
     return result;
   }
 
@@ -160,10 +138,8 @@ public  final class MatrixReply extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasC()) {
-      hash = (37 * hash) + C_FIELD_NUMBER;
-      hash = (53 * hash) + getC().hashCode();
-    }
+    hash = (37 * hash) + C_FIELD_NUMBER;
+    hash = (53 * hash) + getC();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -297,12 +273,8 @@ public  final class MatrixReply extends
     }
     public Builder clear() {
       super.clear();
-      if (cBuilder_ == null) {
-        c_ = null;
-      } else {
-        c_ = null;
-        cBuilder_ = null;
-      }
+      c_ = 0;
+
       return this;
     }
 
@@ -325,11 +297,7 @@ public  final class MatrixReply extends
 
     public com.example.grpc.server.grpcserver.MatrixReply buildPartial() {
       com.example.grpc.server.grpcserver.MatrixReply result = new com.example.grpc.server.grpcserver.MatrixReply(this);
-      if (cBuilder_ == null) {
-        result.c_ = c_;
-      } else {
-        result.c_ = cBuilder_.build();
-      }
+      result.c_ = c_;
       onBuilt();
       return result;
     }
@@ -371,8 +339,8 @@ public  final class MatrixReply extends
 
     public Builder mergeFrom(com.example.grpc.server.grpcserver.MatrixReply other) {
       if (other == com.example.grpc.server.grpcserver.MatrixReply.getDefaultInstance()) return this;
-      if (other.hasC()) {
-        mergeC(other.getC());
+      if (other.getC() != 0) {
+        setC(other.getC());
       }
       onChanged();
       return this;
@@ -400,121 +368,30 @@ public  final class MatrixReply extends
       return this;
     }
 
-    private com.example.grpc.server.grpcserver.MatrixN c_ = null;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.example.grpc.server.grpcserver.MatrixN, com.example.grpc.server.grpcserver.MatrixN.Builder, com.example.grpc.server.grpcserver.MatrixNOrBuilder> cBuilder_;
+    private int c_ ;
     /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
+     * <code>int32 C = 1;</code>
      */
-    public boolean hasC() {
-      return cBuilder_ != null || c_ != null;
+    public int getC() {
+      return c_;
     }
     /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
+     * <code>int32 C = 1;</code>
      */
-    public com.example.grpc.server.grpcserver.MatrixN getC() {
-      if (cBuilder_ == null) {
-        return c_ == null ? com.example.grpc.server.grpcserver.MatrixN.getDefaultInstance() : c_;
-      } else {
-        return cBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    public Builder setC(com.example.grpc.server.grpcserver.MatrixN value) {
-      if (cBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        c_ = value;
-        onChanged();
-      } else {
-        cBuilder_.setMessage(value);
-      }
-
+    public Builder setC(int value) {
+      
+      c_ = value;
+      onChanged();
       return this;
     }
     /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    public Builder setC(
-        com.example.grpc.server.grpcserver.MatrixN.Builder builderForValue) {
-      if (cBuilder_ == null) {
-        c_ = builderForValue.build();
-        onChanged();
-      } else {
-        cBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    public Builder mergeC(com.example.grpc.server.grpcserver.MatrixN value) {
-      if (cBuilder_ == null) {
-        if (c_ != null) {
-          c_ =
-            com.example.grpc.server.grpcserver.MatrixN.newBuilder(c_).mergeFrom(value).buildPartial();
-        } else {
-          c_ = value;
-        }
-        onChanged();
-      } else {
-        cBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
+     * <code>int32 C = 1;</code>
      */
     public Builder clearC() {
-      if (cBuilder_ == null) {
-        c_ = null;
-        onChanged();
-      } else {
-        c_ = null;
-        cBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    public com.example.grpc.server.grpcserver.MatrixN.Builder getCBuilder() {
       
+      c_ = 0;
       onChanged();
-      return getCFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    public com.example.grpc.server.grpcserver.MatrixNOrBuilder getCOrBuilder() {
-      if (cBuilder_ != null) {
-        return cBuilder_.getMessageOrBuilder();
-      } else {
-        return c_ == null ?
-            com.example.grpc.server.grpcserver.MatrixN.getDefaultInstance() : c_;
-      }
-    }
-    /**
-     * <code>.matrixmult.MatrixN C = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.example.grpc.server.grpcserver.MatrixN, com.example.grpc.server.grpcserver.MatrixN.Builder, com.example.grpc.server.grpcserver.MatrixNOrBuilder> 
-        getCFieldBuilder() {
-      if (cBuilder_ == null) {
-        cBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.example.grpc.server.grpcserver.MatrixN, com.example.grpc.server.grpcserver.MatrixN.Builder, com.example.grpc.server.grpcserver.MatrixNOrBuilder>(
-                getC(),
-                getParentForChildren(),
-                isClean());
-        c_ = null;
-      }
-      return cBuilder_;
+      return this;
     }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {

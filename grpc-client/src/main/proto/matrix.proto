@@ -22,8 +22,8 @@ package matrixmult;
 
 // The matrix service definition.
 service MatrixService{
-  rpc MultiplyBlock (RequestMatrices) returns (MatrixReply) {}
-  rpc AddBlock (RequestMatrices) returns (MatrixReply) {}
+  rpc MultiplyBlock (IndvRequestMatrices) returns (MatrixReply) {}
+  rpc AddBlock (IndvRequestMatrices) returns (MatrixReply) {}
 }
 
 // The request message containing the two matricies
@@ -44,6 +44,12 @@ message RequestMatrices {
   MatrixN B = 2;
 }
 
+// matrix calculation package
+message IndvRequestMatrices {
+  int32 A = 1;
+  int32 B = 2;
+}
+
 // The request message containing n size matrix
 message MatrixN {
   repeated Row rows = 1;
@@ -55,6 +61,6 @@ message Row {
 
 // The response message containing the result marix
 message MatrixReply {
-  MatrixN C = 1;
+  int32 C = 1;
 }
 
