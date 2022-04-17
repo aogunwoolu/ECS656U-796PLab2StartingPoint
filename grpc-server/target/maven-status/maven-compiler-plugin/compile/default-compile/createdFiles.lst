@@ -12,10 +12,12 @@ com/example/grpc/server/grpcserver/HelloServiceGrpc$1.class
 com/example/grpc/server/grpcserver/HelloServiceGrpc$HelloServiceBlockingStub.class
 com/example/grpc/server/grpcserver/MatrixRequest$Builder.class
 com/example/grpc/server/grpcserver/MatrixServiceGrpc.class
+com/example/grpc/server/grpcserver/MatrixBlockReply.class
 com/example/grpc/server/grpcserver/PingPongServiceGrpc.class
 com/example/grpc/server/grpcserver/HelloResponse$Builder.class
 com/example/grpc/server/grpcserver/RequestMatrices.class
 com/example/grpc/server/grpcserver/Row$Builder.class
+com/example/grpc/server/grpcserver/MatrixBlockReply$1.class
 com/example/grpc/server/grpcserver/PingRequest$Builder.class
 com/example/grpc/server/grpcserver/MatrixServiceGrpc$MatrixServiceStub.class
 com/example/grpc/server/grpcserver/PingRequest$1.class
@@ -52,6 +54,7 @@ com/example/grpc/server/grpcserver/MatrixReply.class
 com/example/grpc/server/grpcserver/HelloResponse$1.class
 com/example/grpc/server/grpcserver/PingPongServiceImpl.class
 com/example/grpc/server/grpcserver/RowOrBuilder.class
+com/example/grpc/server/grpcserver/MatrixBlockReplyOrBuilder.class
 com/example/grpc/server/grpcserver/MatrixN.class
 com/example/grpc/server/grpcserver/IndvRequestMatrices$Builder.class
 com/example/grpc/server/grpcserver/HelloServiceImpl.class
@@ -67,6 +70,7 @@ com/example/grpc/server/grpcserver/PongResponse$Builder.class
 com/example/grpc/server/grpcserver/PingRequestOrBuilder.class
 com/example/grpc/server/grpcserver/PingRequest.class
 com/example/grpc/server/grpcserver/PongResponseOrBuilder.class
+com/example/grpc/server/grpcserver/MatrixBlockReply$Builder.class
 com/example/grpc/server/grpcserver/MatrixServiceGrpc$MethodHandlers.class
 com/example/grpc/server/grpcserver/GrpcServerApplication.class
 com/example/grpc/server/grpcserver/MatrixMult.class

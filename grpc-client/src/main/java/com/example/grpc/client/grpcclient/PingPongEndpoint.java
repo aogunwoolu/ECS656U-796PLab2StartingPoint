@@ -27,7 +27,7 @@ public class PingPongEndpoint {
     Integer[][] currentA;
     Integer[][] currentB;
 
-    String[] ips = new String[]{"35.232.169.222", "35.232.169.222", "35.232.169.222", "35.232.169.222"};
+    String[] ips = new String[]{"localhost","localhost","localhost","localhost","localhost","localhost"};//{"34.136.68.107", "34.68.69.77", "35.239.210.63", "35.238.58.44"};
 
 	GRPCClientService grpcClientService;  
 
@@ -50,6 +50,18 @@ public class PingPongEndpoint {
     @GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("C", grpcClientService.add(currentA, currentB));
+        return "result";
+	}
+
+    @GetMapping("/blockadd")
+	public String blockadd(Model model) {
+		model.addAttribute("C", grpcClientService.add(currentA, currentB));
+        return "result";
+	}
+    
+    @GetMapping("/blockmult")
+	public String blockmult(Model model) {
+		model.addAttribute("C", grpcClientService.blockMult(currentA, currentB));
         return "result";
 	}
 

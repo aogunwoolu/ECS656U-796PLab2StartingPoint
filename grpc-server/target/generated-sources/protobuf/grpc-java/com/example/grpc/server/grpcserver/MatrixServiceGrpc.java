@@ -54,6 +54,30 @@ public final class MatrixServiceGrpc {
           .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
               com.example.grpc.server.grpcserver.MatrixReply.getDefaultInstance()))
           .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.RequestMatrices,
+      com.example.grpc.server.grpcserver.MatrixBlockReply> METHOD_MULTIPLY_BBLOCK =
+      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.RequestMatrices, com.example.grpc.server.grpcserver.MatrixBlockReply>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "matrixmult.MatrixService", "MultiplyBBlock"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.example.grpc.server.grpcserver.RequestMatrices.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.example.grpc.server.grpcserver.MatrixBlockReply.getDefaultInstance()))
+          .build();
+  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
+  public static final io.grpc.MethodDescriptor<com.example.grpc.server.grpcserver.RequestMatrices,
+      com.example.grpc.server.grpcserver.MatrixBlockReply> METHOD_ADD_BBLOCK =
+      io.grpc.MethodDescriptor.<com.example.grpc.server.grpcserver.RequestMatrices, com.example.grpc.server.grpcserver.MatrixBlockReply>newBuilder()
+          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+          .setFullMethodName(generateFullMethodName(
+              "matrixmult.MatrixService", "AddBBlock"))
+          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.example.grpc.server.grpcserver.RequestMatrices.getDefaultInstance()))
+          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+              com.example.grpc.server.grpcserver.MatrixBlockReply.getDefaultInstance()))
+          .build();
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -99,6 +123,20 @@ public final class MatrixServiceGrpc {
       asyncUnimplementedUnaryCall(METHOD_ADD_BLOCK, responseObserver);
     }
 
+    /**
+     */
+    public void multiplyBBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+        io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_MULTIPLY_BBLOCK, responseObserver);
+    }
+
+    /**
+     */
+    public void addBBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+        io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply> responseObserver) {
+      asyncUnimplementedUnaryCall(METHOD_ADD_BBLOCK, responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -115,6 +153,20 @@ public final class MatrixServiceGrpc {
                 com.example.grpc.server.grpcserver.IndvRequestMatrices,
                 com.example.grpc.server.grpcserver.MatrixReply>(
                   this, METHODID_ADD_BLOCK)))
+          .addMethod(
+            METHOD_MULTIPLY_BBLOCK,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.example.grpc.server.grpcserver.RequestMatrices,
+                com.example.grpc.server.grpcserver.MatrixBlockReply>(
+                  this, METHODID_MULTIPLY_BBLOCK)))
+          .addMethod(
+            METHOD_ADD_BBLOCK,
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.example.grpc.server.grpcserver.RequestMatrices,
+                com.example.grpc.server.grpcserver.MatrixBlockReply>(
+                  this, METHODID_ADD_BBLOCK)))
           .build();
     }
   }
@@ -155,6 +207,22 @@ public final class MatrixServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(METHOD_ADD_BLOCK, getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void multiplyBBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+        io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_MULTIPLY_BBLOCK, getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void addBBlock(com.example.grpc.server.grpcserver.RequestMatrices request,
+        io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(METHOD_ADD_BBLOCK, getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -190,6 +258,20 @@ public final class MatrixServiceGrpc {
     public com.example.grpc.server.grpcserver.MatrixReply addBlock(com.example.grpc.server.grpcserver.IndvRequestMatrices request) {
       return blockingUnaryCall(
           getChannel(), METHOD_ADD_BLOCK, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.example.grpc.server.grpcserver.MatrixBlockReply multiplyBBlock(com.example.grpc.server.grpcserver.RequestMatrices request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_MULTIPLY_BBLOCK, getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.example.grpc.server.grpcserver.MatrixBlockReply addBBlock(com.example.grpc.server.grpcserver.RequestMatrices request) {
+      return blockingUnaryCall(
+          getChannel(), METHOD_ADD_BBLOCK, getCallOptions(), request);
     }
   }
 
@@ -229,10 +311,28 @@ public final class MatrixServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(METHOD_ADD_BLOCK, getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.example.grpc.server.grpcserver.MatrixBlockReply> multiplyBBlock(
+        com.example.grpc.server.grpcserver.RequestMatrices request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_MULTIPLY_BBLOCK, getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.example.grpc.server.grpcserver.MatrixBlockReply> addBBlock(
+        com.example.grpc.server.grpcserver.RequestMatrices request) {
+      return futureUnaryCall(
+          getChannel().newCall(METHOD_ADD_BBLOCK, getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_MULTIPLY_BLOCK = 0;
   private static final int METHODID_ADD_BLOCK = 1;
+  private static final int METHODID_MULTIPLY_BBLOCK = 2;
+  private static final int METHODID_ADD_BBLOCK = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -258,6 +358,14 @@ public final class MatrixServiceGrpc {
         case METHODID_ADD_BLOCK:
           serviceImpl.addBlock((com.example.grpc.server.grpcserver.IndvRequestMatrices) request,
               (io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixReply>) responseObserver);
+          break;
+        case METHODID_MULTIPLY_BBLOCK:
+          serviceImpl.multiplyBBlock((com.example.grpc.server.grpcserver.RequestMatrices) request,
+              (io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply>) responseObserver);
+          break;
+        case METHODID_ADD_BBLOCK:
+          serviceImpl.addBBlock((com.example.grpc.server.grpcserver.RequestMatrices) request,
+              (io.grpc.stub.StreamObserver<com.example.grpc.server.grpcserver.MatrixBlockReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -294,6 +402,8 @@ public final class MatrixServiceGrpc {
               .setSchemaDescriptor(new MatrixServiceDescriptorSupplier())
               .addMethod(METHOD_MULTIPLY_BLOCK)
               .addMethod(METHOD_ADD_BLOCK)
+              .addMethod(METHOD_MULTIPLY_BBLOCK)
+              .addMethod(METHOD_ADD_BBLOCK)
               .build();
         }
       }

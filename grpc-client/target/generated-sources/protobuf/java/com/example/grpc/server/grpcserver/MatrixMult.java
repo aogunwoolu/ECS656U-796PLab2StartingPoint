@@ -44,6 +44,11 @@ public final class MatrixMult {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_matrixmult_MatrixReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_matrixmult_MatrixBlockReply_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_matrixmult_MatrixBlockReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -62,12 +67,18 @@ public final class MatrixMult {
       "questMatrices\022\t\n\001A\030\001 \001(\005\022\t\n\001B\030\002 \001(\005\"(\n\007M" +
       "atrixN\022\035\n\004rows\030\001 \003(\0132\017.matrixmult.Row\"\023\n" +
       "\003Row\022\014\n\004cols\030\001 \003(\005\"\030\n\013MatrixReply\022\t\n\001C\030\001" +
-      " \001(\0052\244\001\n\rMatrixService\022K\n\rMultiplyBlock\022",
-      "\037.matrixmult.IndvRequestMatrices\032\027.matri" +
-      "xmult.MatrixReply\"\000\022F\n\010AddBlock\022\037.matrix" +
-      "mult.IndvRequestMatrices\032\027.matrixmult.Ma" +
-      "trixReply\"\000B7\n\"com.example.grpc.server.g" +
-      "rpcserverB\nMatrixMultP\001\242\002\002MMb\006proto3"
+      " \001(\005\"2\n\020MatrixBlockReply\022\036\n\001C\030\001 \001(\0132\023.ma",
+      "trixmult.MatrixN2\275\002\n\rMatrixService\022K\n\rMu" +
+      "ltiplyBlock\022\037.matrixmult.IndvRequestMatr" +
+      "ices\032\027.matrixmult.MatrixReply\"\000\022F\n\010AddBl" +
+      "ock\022\037.matrixmult.IndvRequestMatrices\032\027.m" +
+      "atrixmult.MatrixReply\"\000\022M\n\016MultiplyBBloc" +
+      "k\022\033.matrixmult.RequestMatrices\032\034.matrixm" +
+      "ult.MatrixBlockReply\"\000\022H\n\tAddBBlock\022\033.ma" +
+      "trixmult.RequestMatrices\032\034.matrixmult.Ma" +
+      "trixBlockReply\"\000B7\n\"com.example.grpc.ser" +
+      "ver.grpcserverB\nMatrixMultP\001\242\002\002MMb\006proto",
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -116,6 +127,12 @@ public final class MatrixMult {
     internal_static_matrixmult_MatrixReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_matrixmult_MatrixReply_descriptor,
+        new java.lang.String[] { "C", });
+    internal_static_matrixmult_MatrixBlockReply_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_matrixmult_MatrixBlockReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_matrixmult_MatrixBlockReply_descriptor,
         new java.lang.String[] { "C", });
   }
 

@@ -24,6 +24,8 @@ package matrixmult;
 service MatrixService{
   rpc MultiplyBlock (IndvRequestMatrices) returns (MatrixReply) {}
   rpc AddBlock (IndvRequestMatrices) returns (MatrixReply) {}
+  rpc MultiplyBBlock (RequestMatrices) returns (MatrixBlockReply) {}
+  rpc AddBBlock (RequestMatrices) returns (MatrixBlockReply) {}
 }
 
 // The request message containing the two matricies
@@ -64,3 +66,6 @@ message MatrixReply {
   int32 C = 1;
 }
 
+message MatrixBlockReply {
+  MatrixN C = 1;
+}
