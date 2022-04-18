@@ -106,6 +106,7 @@ public class PingPongEndpoint {
 
         Integer[][] inputA = new Integer[length][length];
         Integer[][] inputB = new Integer[length][length];
+
         for (int i=0; i < length; i++) {
             split_contentA[i] = split_contentA[i].trim();
             split_contentB[i] = split_contentB[i].trim();
@@ -125,13 +126,17 @@ public class PingPongEndpoint {
         else if (inputA.length != inputB.length) {
             //throw new InputMatricesNotSameSizeException();
             //throw new RuntimeException("This was thrown intentionally");
-            System.out.println("not power of 2");
+            System.out.println("not the same size");
         }
 
         //int[][] intResult = new int[length][length];
         String returnResult = new String(); 
 
-        if ((length != 0) && ((length & (length - 1)) == 0)) {
+        //check if power of 2
+
+
+
+        if (length == (int)Math.pow(2, Math.floor(Math.log(length)/Math.log(2)))) {
             //String intResult = grpcClientService.mult(inputA, inputB);
 
             currentA = inputA;

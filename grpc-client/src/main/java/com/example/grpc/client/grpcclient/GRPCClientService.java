@@ -337,22 +337,13 @@ public class GRPCClientService {
 			}
 		}
 
-		distributedBlockMultiply(blocksA[0], blocksB[0], result[0]);
-		server_index++;
-		distributedBlockMultiply(blocksA[1], blocksB[2], result[0]);
-		server_index++;
-		distributedBlockMultiply(blocksA[0], blocksB[1], result[1]);
-		server_index++;
-		distributedBlockMultiply(blocksA[1], blocksB[3], result[1]);
-		server_index++;
-		distributedBlockMultiply(blocksA[2], blocksB[0], result[2]);
-		server_index++;
-		distributedBlockMultiply(blocksA[3], blocksB[2], result[2]);
-		server_index++;
-		distributedBlockMultiply(blocksA[2], blocksB[1], result[3]);
-		server_index++;
-		distributedBlockMultiply(blocksA[3], blocksB[3], result[3]);
-		server_index++;
+		int[][] multIndexes = {{0,0,0},{1,2,0},{0,1,1},{1,3,1},{2,0,2},{3,2,2},{2,1,3},{3,3,3}};
+		
+
+		for (int i = 0; i < multIndexes.length; i++) {
+			distributedBlockMultiply(blocksA[multIndexes[i][0]], blocksB[multIndexes[i][1]], result[multIndexes[i][2]]);
+			server_index++;
+		}
 
 		//unchunk array
 		Integer[][] output = new Integer[n][n];
