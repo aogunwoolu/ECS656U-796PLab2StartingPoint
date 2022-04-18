@@ -227,9 +227,6 @@ public class GRPCClientService {
 			}
 		}
 
-		System.out.println(result.length +" x "+ result[0].length);
-		System.out.println(inputC.length +" x "+ inputC[0].length);
-
 		distributedBlockAddition(inputC, result, inputC);
 
 	}
