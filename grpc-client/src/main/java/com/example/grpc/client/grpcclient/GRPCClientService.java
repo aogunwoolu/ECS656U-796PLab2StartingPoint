@@ -216,14 +216,22 @@ public class GRPCClientService {
 		);
 
 		A.getC();
-		MatrixN rows = A.getC();
+		MatrixN mat = A.getC();
 
-		for (int i = 0; i < rows.getRowsCount(); i++) {
-			Row row = rows.getRows(i);
+		Integer[][] result = new Integer[mat.getRowsCount()][mat.getRowsCount()];
+
+		for (int i = 0; i < mat.getRowsCount(); i++) {
+			Row row = mat.getRows(i);
 			for (int j = 0; j < row.getColsCount(); j++) {
-				inputC[i][j] += row.getCols(j);
+				result[i][j] = row.getCols(j);
 			}
 		}
+
+		System.out.println(result.length +" x "+ result[0].length);
+		System.out.println(inputC.length +" x "+ inputC[0].length);
+
+		distributedBlockAddition(inputC, result, inputC);
+
 	}
 
 	public double blockFootPrint(
@@ -327,11 +335,11 @@ public class GRPCClientService {
         System.out.printf("Footprint: %s seconds%n", footprint);
         System.out.println("--------------------------------------------------------------");
 
-		Integer[][][] result = new Integer[4][n][n];
+		Integer[][][] result = new Integer[4][block_size][block_size];
 
 		for (int i = 0;i<4;i++){
-			for (int j = 0;j<n;j++){
-				for (int k = 0;k<n;k++){
+			for (int j = 0;j<block_size;j++){
+				for (int k = 0;k<block_size;k++){
 					result[i][j][k] = 0;
 				}
 			}
