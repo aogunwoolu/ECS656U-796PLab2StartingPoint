@@ -29,6 +29,7 @@ service MatrixService{
 }
 
 // The request message containing the two matricies
+// original request object. Unchanged
 message MatrixRequest {
   int32 a00 = 1;
   int32 a01 = 2;
@@ -40,32 +41,34 @@ message MatrixRequest {
   int32 b11 = 8;
 }
 
-// matrix calculation package
+// block matrix calculation package
 message RequestMatrices {
   MatrixN A = 1;
   MatrixN B = 2;
 }
 
-// matrix calculation package
+// individual matrix calculation package
 message IndvRequestMatrices {
   int32 A = 1;
   int32 B = 2;
 }
 
-// The request message containing n size matrix
+// The request matrix containing n size matrix
 message MatrixN {
   repeated Row rows = 1;
 }
 
+// rows for the request matrix
 message Row {
   repeated int32 cols = 1;
 }
 
-// The response message containing the result marix
+// The response message containing the result
 message MatrixReply {
   int32 C = 1;
 }
 
+// The response message containing the result marix
 message MatrixBlockReply {
   MatrixN C = 1;
 }

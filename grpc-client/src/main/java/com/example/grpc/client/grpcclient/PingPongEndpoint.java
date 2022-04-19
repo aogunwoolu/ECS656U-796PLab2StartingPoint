@@ -24,18 +24,25 @@ import java.util.Arrays;
 public class PingPongEndpoint { 
     //distributed-cw-a
     
+    // definition of the 2 matrices to be used in the multiplication + addition
     Integer[][] currentA;
     Integer[][] currentB;
 
+    // ips of the servers
     String[] ips = new String[]{"localhost","localhost","localhost","localhost","localhost","localhost"};//{"34.136.68.107", "34.68.69.77", "35.239.210.63", "35.238.58.44"};
 
+    // clientservice definiton
 	GRPCClientService grpcClientService;  
 
+    // constructor
 	@Autowired
     public PingPongEndpoint(GRPCClientService grpcClientService) {
         grpcClientService.setup(ips);
         this.grpcClientService = grpcClientService;
     }    
+
+
+    // web page mappings (GET)
 	@GetMapping("/ping")
     public String ping(Model model) {
         model.addAttribute("response", grpcClientService.ping());
@@ -79,13 +86,12 @@ public class PingPongEndpoint {
         return "display";
 	}
 
-	// @PostMapping("/upload")
-	// public String add() {
-	// 	return grpcClientService.upload();
-	// }
+    // POST mapping for uploading the matrices
 	@PostMapping("/upload")
-    public RedirectView handleFileUpload(@RequestParam("matrixA") MultipartFile matrixA, @RequestParam("matrixB") MultipartFile matrixB, RedirectAttributes redirectAttributes) {
+    public RedirectView handleFileUpload(@RequestParam("matrixA") MultipartFile matrixA, @RequestParam("matrixB") MultipartFile matrixB, RedirectAttributes redirectAttributes)
+    throws Exception {
 
+        // check if the files are empty
         String contentA = new String(); 
         String contentB = new String(); 
         try {
@@ -98,8 +104,7 @@ public class PingPongEndpoint {
             System.out.println("Can't read file input stream");
         }
 
-        //contentA = contentA.substring(0, contentA.length()-1);
-        //contentB = contentA.substring(0, contentA.length()-1);
+        // splitting rows (based on new line)
         String[] split_contentA = contentA.split("\n");
         String[] split_contentB = contentB.split("\n");
         int length = split_contentA.length;
@@ -110,6 +115,8 @@ public class PingPongEndpoint {
         for (int i=0; i < length; i++) {
             split_contentA[i] = split_contentA[i].trim();
             split_contentB[i] = split_contentB[i].trim();
+
+            // splitting cols (based on space)
             String[] single_intA = split_contentA[i].split(",");
             String[] single_intB = split_contentB[i].split(",");
 
@@ -120,8 +127,8 @@ public class PingPongEndpoint {
         }
 
         if (length < 4) {
-            //throw new MatrixTooSmallException();
-			System.out.println("too small");
+            throw new Exception("matrix must be a power of 2: ");
+			//System.out.println("too small");
         }
         else if (inputA.length != inputB.length) {
             //throw new InputMatricesNotSameSizeException();
@@ -133,21 +140,13 @@ public class PingPongEndpoint {
         String returnResult = new String(); 
 
         //check if power of 2
-
-
-
         if (length == (int)Math.pow(2, Math.floor(Math.log(length)/Math.log(2)))) {
-            //String intResult = grpcClientService.mult(inputA, inputB);
-
             currentA = inputA;
             currentB = inputB;
-            // String result = Arrays.deepToString(intResult);
-            // redirectAttributes.addFlashAttribute("message", result);
-            // returnResult = "redirect:/";
         }
         else {
-            //throw new MatrixNotAPowerOfTwoException();
-			System.out.println("not power of 2");
+            throw new Exception("matrix must be a power of 2: ");
+			//System.out.println("not power of 2");
         }
 
         RedirectView rv = new RedirectView();
